@@ -1,0 +1,115 @@
+
+
+// #OVERLAY
+
+
+.overlay {
+	@extend .grid;
+	@extend .grid--middle;
+	@extend .grid--center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+
+	overflow-y: auto;
+
+	opacity: 0;
+	visibility: hidden;
+
+	@include transition(opacity $fast, visibility 0s linear $fast);
+
+
+	&.overlay--show {
+		opacity: 1;
+		visibility: visible;
+
+		@include transition(opacity $fast, visibility 0s);
+	}
+}
+
+	.overlay__back,
+	button.overlay__back {
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+
+		background: fade-out($black, 0.1);
+	}
+
+
+	.overlay__container {
+		position: relative;
+
+		width: 100%;
+		max-width: (666/$base) * 1rem;
+		max-height: 100vh;
+		overflow-y: auto;
+
+		text-align: left;
+
+		padding: $gutter*2 $gutter;
+		border: 2px solid $black--dark;
+		border-radius: $border_radius;
+		background-color: $black--light;
+
+		box-shadow: 0 6px 0 $black--dark;
+
+		@include transform(scale(0.9) translate(0, 0));
+		@include transform_origin(50%, 50%);
+
+		@include transformer();
+
+		.overlay--show & {
+			@include transform(scale(1) translate(0));
+		}
+	}
+
+		.overlay__close,
+		button.overlay__close {
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			right: 0;
+
+			font-size: $small_size;
+			color: $black--dark;
+
+			padding: $gutter/2;
+			border: 0;
+			border-radius: 0;
+			border-bottom-left-radius: $border_radius;
+
+			&:hover,
+			&:focus {
+				color: $white;
+				background: $black--dark;
+			}
+		}
+
+		.overlay__alert {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			z-index: 2;
+
+			width: 100%;
+			height: 100%;
+
+			@extend .grid;
+			@extend .grid--middle;
+			@extend .grid--center;
+
+			color: $white;
+			background-color: fade-out($alert_color, 0.2);
+		}
+
+

@@ -1,0 +1,35 @@
+{
+  "name": "clock",
+  "version": "0.0.1",
+  "description": "",
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-transform-object-rest-spread": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "css-loader": "*",
+    "extract-text-webpack-plugin": "*",
+    "file-loader": "*",
+    "globby": "*",
+    "node-sass": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-hot-loader": "*",
+    "sass-loader": "*",
+    "style-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config=./config/development.js",
+    "build": "webpack --config=./config/production.js --progress -p"
+  },
+  "author": "Phillip Malboeuf <phillip.malboeuf@gmail.com>",
+  "dependencies": {
+  }
+}

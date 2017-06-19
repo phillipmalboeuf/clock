@@ -1,0 +1,28 @@
+
+
+// #CLOCK
+
+.clock {
+	overflow: visible !important;
+	width: 100vw;
+	max-width: 700px;
+	height: 100vh;
+	max-height: 700px;
+}
+
+	.clock__back {
+		fill: $light;
+		stroke: $dark;
+	}
+
+	.clock__night {
+		fill: $dark;
+	}
+
+	.clock__hand {
+		fill: #8f3d4b;
+	}
+
+	.clock__line {
+		stroke: $dark;
+	}

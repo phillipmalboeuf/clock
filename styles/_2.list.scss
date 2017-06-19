@@ -1,0 +1,69 @@
+
+// #LISTS 
+
+ol,
+ul {
+	font-size: $base_size;
+	color: inherit;
+
+	width: 100%;
+	margin: 0 0 $vertical_rythm/2;
+	padding-left: $gutter;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&.list--boxes {
+		list-style: none;
+		padding-left: 0;
+
+		li {
+			padding: $gutter;
+			border-bottom: 1px solid;
+			min-height: 0;
+
+			@include transition(min-height $fast);
+
+			&:first-child {
+				border-top: 1px solid;
+			}
+
+			&.li--focus {
+				background: $grey--light;
+			}
+
+			&.li--tall {
+				min-height: 50vh;
+			}
+
+			&.li--has_next,
+			&.li--has_next + li {
+				padding-top: $gutter/1.5;
+				padding-bottom: $gutter/1.5;
+				border-bottom: none;
+			}
+
+			&.li--has_next + li:not(.li--has_next) {
+				border-bottom: 1px solid;
+			}
+
+			@media #{$tablet_portrait} {
+				padding-left: $gutter/2;
+				padding-right: $gutter/2;
+			}
+		}
+	}
+}
+
+ul {
+	list-style: circle;
+}
+
+ol {
+	
+}
+	
+	li {
+
+	}

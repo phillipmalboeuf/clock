@@ -1,0 +1,37 @@
+
+
+// #TOOLTIP
+
+$tooltip_width: (222/$base) * 1rem;
+$arrow_size: (6/$base)*1rem;
+
+.tooltip {
+	position: absolute;
+	z-index: 2;
+	bottom: 110%;
+	left: -($tooltip_width/2);
+	width: $tooltip_width;
+
+	color: $white;
+	font-size: $base_size;
+	font-family: $body_font;
+	line-height: $line_height;
+	background: $black;
+	border-radius: $border_radius;
+	padding: $vertical_rythm/2;
+
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: $tooltip_width/2 - $arrow_size;
+
+		width: 0;
+		height: 0;
+		border: $arrow_size solid transparent;
+		border-bottom-width: 0;
+		border-top-color: $black;
+	}
+}
+
