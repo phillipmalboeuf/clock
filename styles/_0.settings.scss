@@ -2,7 +2,7 @@
 // #COLORS
 
 $white--light: #FFF;
-$white: #c5c8c6;
+$white: #f1f1f1;
 $black--dark: #000;
 $black: #1d1f21;
 $black--light: #282a2e;
@@ -12,8 +12,8 @@ $red: #cc6666;
 $blue: #81a2be;
 $green: #b5bd68;
 
-$dark: $black;
-$dark--light: $black--dark;
+$dark: $black--dark;
+$dark--light: $black;
 $light: $white--light;
 $light--dark: $white;
 

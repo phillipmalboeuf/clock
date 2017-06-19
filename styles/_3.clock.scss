@@ -6,15 +6,6 @@
 	overflow: visible !important;
 }
 
-	.clock__back {
-		fill: $light;
-		stroke: $dark;
-	}
-
-	.clock__night {
-		fill: $dark;
-	}
-
 	.clock__hand {
 		fill: $red;
 	}
@@ -25,4 +16,20 @@
 
 	.clock__now {
 		fill: $dark;
+	}
+
+	.clock__night {
+		fill: $dark;
+
+		&.clock__night--light {
+			fill: $dark--light;
+		}
+	}
+
+	.clock__day {
+		fill: $light;
+
+		&.clock__day--dark {
+			fill: $light--dark;
+		}
 	}
