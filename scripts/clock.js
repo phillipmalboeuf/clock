@@ -17,18 +17,18 @@ export class Clock extends React.Component {
 	resetClock() {
 		let sunrise = new Date()
 		sunrise.setHours(5)
-		sunrise.setMinutes(30)
+		sunrise.setMinutes(0)
 		sunrise.setSeconds(0)
 		sunrise.setMilliseconds(0)
 		let sunset = new Date()
-		sunset.setHours(18)
-		sunset.setMinutes(30)
+		sunset.setHours(19)
+		sunset.setMinutes(0)
 		sunset.setSeconds(0)
 		sunset.setMilliseconds(0)
 		let nextSunrise = new Date()
 		nextSunrise.setDate(nextSunrise.getDate() + 1)
 		nextSunrise.setHours(5)
-		nextSunrise.setMinutes(30)
+		nextSunrise.setMinutes(0)
 		nextSunrise.setSeconds(0)
 		nextSunrise.setMilliseconds(0)
 
@@ -80,8 +80,8 @@ export class Clock extends React.Component {
 		let sunset = (this.state.sunset - this.state.sunrise) / this.state.day
 		let nextSunrise = (this.state.nextSunrise - this.state.sunrise) / this.state.day
 
-		let rotateX = (value, percentage)=> center + ((radius + value) * Math.cos((percentage + 0.5)*2*Math.PI))
-		let rotateY = (value, percentage)=> center + ((radius + value) * Math.sin((percentage + 0.5)*2*Math.PI))
+		let rotateX = (value, percentage)=> center + ((radius + value) * Math.cos((percentage + 1 - sunset + (sunset-0.5)/2)*2*Math.PI))
+		let rotateY = (value, percentage)=> center + ((radius + value) * Math.sin((percentage + 1 - sunset + (sunset-0.5)/2)*2*Math.PI))
 
 		let time = now >= sunset ? `N${((now-sunset)/(nextSunrise-sunset)*100).toFixed(1)}` : `D${((now-sunrise)/(sunset-sunrise)*100).toFixed(1)}`
 
