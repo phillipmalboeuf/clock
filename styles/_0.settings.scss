@@ -12,10 +12,10 @@ $red: #cc6666;
 $blue: #81a2be;
 $green: #b5bd68;
 
-$dark: #2b1d42;
-$dark--light: #4a2f48;
-$light: #fceccb;
-$light--dark: #f3b88d;
+$dark: $black;
+$dark--light: $black--dark;
+$light: $white--light;
+$light--dark: $white;
 
 $body_color: $black;
 $headings_color: inherit;
@@ -26,9 +26,9 @@ $alert_color: $black--light;
 
 // #FONTS
 
-$body_font: "PT Sans", sans-serif;
-$headings_font: "Futura", monospace;
-$alternate_font: "PT Mono", sans-serif;
+$body_font: "Input", monospace;
+$headings_font: "Input", monospace;
+$alternate_font: "Input", monospace;
 
 $bold: bold;
 

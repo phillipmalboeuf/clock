@@ -4,10 +4,6 @@
 
 .clock {
 	overflow: visible !important;
-	width: 100vw;
-	max-width: 700px;
-	height: 100vh;
-	max-height: 700px;
 }
 
 	.clock__back {
@@ -20,9 +16,13 @@
 	}
 
 	.clock__hand {
-		fill: #8f3d4b;
+		fill: $red;
 	}
 
 	.clock__line {
 		stroke: $dark;
+	}
+
+	.clock__now {
+		fill: $dark;
 	}
