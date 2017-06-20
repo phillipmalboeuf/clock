@@ -128,7 +128,7 @@ export class Clock extends React.Component {
 			<path d={`M${center} ${center} L${rotateX(-arrow, now-0.1)} ${rotateY(-arrow, now-0.1)} L${rotateX(0, now)} ${rotateY(0, now)} L${rotateX(-arrow, now+0.1)} ${rotateY(-arrow, now+0.1)} Z`} className="clock__hand" strokeWidth={stroke} strokeLinejoin="miter" strokeMiterlimit={5} fill="black" />
 
 			{/* Clock current time */}
-			<text x={center} y={center} className="clock__now" fontSize={font*2} fontWeight="bold" textAnchor="end">{time}</text>
+			<text x={center} y={center} className="clock__now" fontSize={font*2} fontWeight="bold" textAnchor={now > sunset/2 && now < sunset+(nextSunrise-sunset)/2 ? "end" : "start"}>{time}</text>
 		</svg>
 	}
 }
