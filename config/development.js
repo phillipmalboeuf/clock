@@ -5,7 +5,7 @@ module.exports = [{
 	entry: "./scripts/app.js",
 	output: {
 		filename: "app.js",
-		publicPath: "http://localhost:8090/"
+		publicPath: "http://localhost:8091/"
 	},
 	module: {
 		loaders: [
@@ -34,6 +34,6 @@ module.exports = [{
 	devServer: {
 		hot: true,
 		inline: true,
-		port: 8090
+		port: 8091
 	}
 }]
