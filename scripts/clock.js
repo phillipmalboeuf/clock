@@ -10,7 +10,7 @@ export class Clock extends React.Component {
 		super(props)
 
 		this.state = {
-			radius: props.radius ? props.radius : 300,
+			radius: props.radius ? props.radius : window.innerWidth/6,
 			now: new Time()
 		}
 	}
@@ -24,8 +24,10 @@ export class Clock extends React.Component {
 	}
 
 	updateNow() {
+		this.state.now.setMilliseconds(Date.now())
+
 		this.setState({
-			now: new Time()
+			now: this.state.now
 		})
 	}
 
@@ -40,8 +42,7 @@ export class Clock extends React.Component {
 		let stroke = radius*0.02
 		let font = radius*0.1
 
-
-		return <svg width={diameter} height={diameter} className="clock">
+		return this.state.now.r ? <svg width={diameter} height={diameter} className="clock">
 			{/* Text */}
 			<text x={diameter} y={0} fontSize={font/2} textAnchor="start">Now: {this.state.now.r}</text>
 			<text x={diameter} y={font} fontSize={font/2} textAnchor="start">Sunset: {this.state.now.s}</text>
@@ -51,15 +52,15 @@ export class Clock extends React.Component {
 				d={`M${center} ${center}
 				L${this.state.now.getSunriseX(center, radius)} ${this.state.now.getSunriseY(center, radius)}
 				A${radius} ${radius} 1 0 1
-				${this.state.now.getDayFractionX(0.25, center, radius)} ${this.state.now.getDayFractionY(0.25, center, radius)} Z`} />
+				${this.state.now.getDayX(0.25, center, radius)} ${this.state.now.getDayY(0.25, center, radius)} Z`} />
 			<path className="clock__day" stroke="none" fill="white"
 				d={`M${center} ${center}
-				L${this.state.now.getDayFractionX(0.25, center, radius)} ${this.state.now.getDayFractionY(0.25, center, radius)}
+				L${this.state.now.getDayX(0.25, center, radius)} ${this.state.now.getDayY(0.25, center, radius)}
 				A${radius} ${radius} 1 0 1
-				${this.state.now.getDayFractionX(0.75, center, radius)} ${this.state.now.getDayFractionY(0.75, center, radius)} Z`} />
+				${this.state.now.getDayX(0.75, center, radius)} ${this.state.now.getDayY(0.75, center, radius)} Z`} />
 			<path className="clock__day clock__day--dark" stroke="none" fill="white"
 				d={`M${center} ${center}
-				L${this.state.now.getDayFractionX(0.75, center, radius)} ${this.state.now.getDayFractionY(0.75, center, radius)}
+				L${this.state.now.getDayX(0.75, center, radius)} ${this.state.now.getDayY(0.75, center, radius)}
 				A${radius} ${radius} 1 0 1
 				${this.state.now.getSunsetX(center, radius)} ${this.state.now.getSunsetY(center, radius)} Z`} />
 
@@ -67,15 +68,15 @@ export class Clock extends React.Component {
 				d={`M${center} ${center}
 				L${this.state.now.getSunsetX(center, radius)} ${this.state.now.getSunsetY(center, radius)}
 				A${radius} ${radius} 1 0 1
-				${this.state.now.getNightFractionX(0.25, center, radius)} ${this.state.now.getNightFractionY(0.25, center, radius)} Z`} />
+				${this.state.now.getNightX(0.25, center, radius)} ${this.state.now.getNightY(0.25, center, radius)} Z`} />
 			<path className="clock__night" stroke="none" fill="white"
 				d={`M${center} ${center}
-				L${this.state.now.getNightFractionX(0.25, center, radius)} ${this.state.now.getNightFractionY(0.25, center, radius)}
+				L${this.state.now.getNightX(0.25, center, radius)} ${this.state.now.getNightY(0.25, center, radius)}
 				A${radius} ${radius} 1 0 1
-				${this.state.now.getNightFractionX(0.75, center, radius)} ${this.state.now.getNightFractionY(0.75, center, radius)} Z`} />
+				${this.state.now.getNightX(0.75, center, radius)} ${this.state.now.getNightY(0.75, center, radius)} Z`} />
 			<path className="clock__night clock__night--light" stroke="none" fill="white"
 				d={`M${center} ${center}
-				L${this.state.now.getNightFractionX(0.75, center, radius)} ${this.state.now.getNightFractionY(0.75, center, radius)}
+				L${this.state.now.getNightX(0.75, center, radius)} ${this.state.now.getNightY(0.75, center, radius)}
 				A${radius} ${radius} 1 0 1
 				${this.state.now.getSunriseX(center, radius)} ${this.state.now.getSunriseY(center, radius)} Z`} />
 
@@ -93,26 +94,26 @@ export class Clock extends React.Component {
 				x2={this.state.now.getSunriseX(center, radius+outer)}
 				y2={this.state.now.getSunriseY(center, radius+outer)} />
 			<line className="clock__line" stroke="black" strokeWidth={stroke/2}
-				x1={this.state.now.getDayFractionX(0.25, center, radius)}
-				y1={this.state.now.getDayFractionY(0.25, center, radius)}
-				x2={this.state.now.getDayFractionX(0.25, center, radius+outer/2)}
-				y2={this.state.now.getDayFractionY(0.25, center, radius+outer/2)} />
+				x1={this.state.now.getDayX(0.25, center, radius)}
+				y1={this.state.now.getDayY(0.25, center, radius)}
+				x2={this.state.now.getDayX(0.25, center, radius+outer/2)}
+				y2={this.state.now.getDayY(0.25, center, radius+outer/2)} />
 
 
 			{/* D50 */}
 			<text fontSize={font} fontWeight="bold" textAnchor="middle"
-				x={this.state.now.getDayFractionX(0.5, center, radius+outer+font/4)}
-				y={this.state.now.getDayFractionY(0.5, center, radius+outer+font/4)}>D50</text>
+				x={this.state.now.getDayX(0.5, center, radius+outer+font/4)}
+				y={this.state.now.getDayY(0.5, center, radius+outer+font/4)}>D50</text>
 			<line className="clock__line" stroke="black" strokeWidth={stroke}
-				x1={this.state.now.getDayFractionX(0.5, center, radius)}
-				y1={this.state.now.getDayFractionY(0.5, center, radius)}
-				x2={this.state.now.getDayFractionX(0.5, center, radius+outer)}
-				y2={this.state.now.getDayFractionY(0.5, center, radius+outer)} />
+				x1={this.state.now.getDayX(0.5, center, radius)}
+				y1={this.state.now.getDayY(0.5, center, radius)}
+				x2={this.state.now.getDayX(0.5, center, radius+outer)}
+				y2={this.state.now.getDayY(0.5, center, radius+outer)} />
 			<line className="clock__line" stroke="black" strokeWidth={stroke/2}
-				x1={this.state.now.getDayFractionX(0.75, center, radius)}
-				y1={this.state.now.getDayFractionY(0.75, center, radius)}
-				x2={this.state.now.getDayFractionX(0.75, center, radius+outer/2)}
-				y2={this.state.now.getDayFractionY(0.75, center, radius+outer/2)} />
+				x1={this.state.now.getDayX(0.75, center, radius)}
+				y1={this.state.now.getDayY(0.75, center, radius)}
+				x2={this.state.now.getDayX(0.75, center, radius+outer/2)}
+				y2={this.state.now.getDayY(0.75, center, radius+outer/2)} />
 
 
 			{/* N0 */}
@@ -125,26 +126,26 @@ export class Clock extends React.Component {
 				x2={this.state.now.getSunsetX(center, radius+outer)}
 				y2={this.state.now.getSunsetY(center, radius+outer)} />
 			<line className="clock__line" stroke="black" strokeWidth={stroke/2}
-				x1={this.state.now.getNightFractionX(0.25, center, radius)}
-				y1={this.state.now.getNightFractionY(0.25, center, radius)}
-				x2={this.state.now.getNightFractionX(0.25, center, radius+outer/2)}
-				y2={this.state.now.getNightFractionY(0.25, center, radius+outer/2)} />
+				x1={this.state.now.getNightX(0.25, center, radius)}
+				y1={this.state.now.getNightY(0.25, center, radius)}
+				x2={this.state.now.getNightX(0.25, center, radius+outer/2)}
+				y2={this.state.now.getNightY(0.25, center, radius+outer/2)} />
 
 
 			{/* N50 */}
 			<text fontSize={font} fontWeight="bold" textAnchor="middle"
-				x={this.state.now.getNightFractionX(0.5, center, radius+outer+font)}
-				y={this.state.now.getNightFractionY(0.5, center, radius+outer+font)}>N50</text>
+				x={this.state.now.getNightX(0.5, center, radius+outer+font)}
+				y={this.state.now.getNightY(0.5, center, radius+outer+font)}>N50</text>
 			<line className="clock__line" stroke="black" strokeWidth={stroke}
-				x1={this.state.now.getNightFractionX(0.5, center, radius)}
-				y1={this.state.now.getNightFractionY(0.5, center, radius)}
-				x2={this.state.now.getNightFractionX(0.5, center, radius+outer)}
-				y2={this.state.now.getNightFractionY(0.5, center, radius+outer)} />
+				x1={this.state.now.getNightX(0.5, center, radius)}
+				y1={this.state.now.getNightY(0.5, center, radius)}
+				x2={this.state.now.getNightX(0.5, center, radius+outer)}
+				y2={this.state.now.getNightY(0.5, center, radius+outer)} />
 			<line className="clock__line" stroke="black" strokeWidth={stroke/2}
-				x1={this.state.now.getNightFractionX(0.75, center, radius)}
-				y1={this.state.now.getNightFractionY(0.75, center, radius)}
-				x2={this.state.now.getNightFractionX(0.75, center, radius+outer/2)}
-				y2={this.state.now.getNightFractionY(0.75, center, radius+outer/2)} />
+				x1={this.state.now.getNightX(0.75, center, radius)}
+				y1={this.state.now.getNightY(0.75, center, radius)}
+				x2={this.state.now.getNightX(0.75, center, radius+outer/2)}
+				y2={this.state.now.getNightY(0.75, center, radius+outer/2)} />
 
 
 			
@@ -157,5 +158,6 @@ export class Clock extends React.Component {
 			{/* Clock current time */}
 			<text x={center} y={center} className="clock__now" fontSize={font*2} fontWeight="bold" textAnchor={this.state.now.r > this.state.now.s/2 && this.state.now.r < this.state.now.s+(this.state.now.nLength/2) ? "end" : "start"}>{this.state.now.toString()}</text>
 		</svg>
+		: null
 	}
 }
