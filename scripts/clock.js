@@ -44,8 +44,8 @@ export class Clock extends React.Component {
 
 		return this.state.now.r ? <svg width={diameter} height={diameter} className="clock">
 			{/* Text */}
-			<text x={diameter} y={0} fontSize={font/2} textAnchor="start">Now: {this.state.now.r}</text>
-			<text x={diameter} y={font} fontSize={font/2} textAnchor="start">Sunset: {this.state.now.s}</text>
+			<text x={diameter} y={0} fontSize={font/2} textAnchor="start">Now: R{(this.state.now.r*100).toFixed(1)}</text>
+			<text x={diameter} y={font} fontSize={font/2} textAnchor="start">Sunset: R{(this.state.now.s*100).toFixed(1)}</text>
 
 			{/* Pies */}
 			<path className="clock__day clock__day--dark" stroke="none" fill="white"
