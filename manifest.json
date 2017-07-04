@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+
+	"name": "Revolutions Clock",
+	"description": "This extension adds the Revolutions Clock to your new tab page.",
+	"homepage_url": "https://clock.re/",
+	"version": "1.0",
+
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"permissions": [
+		"geolocation"
+	],
+
+	"offline_enabled": true,
+	"web_accessible_resources": [
+		"files/*",
+		"files/fonts/*"
+	]
+}

@@ -5,25 +5,42 @@ export class Time {
 
 		milliseconds = milliseconds ? milliseconds : Date.now()
 
-
-		navigator.geolocation.getCurrentPosition((position)=> {
-			let times = SunCalc.getTimes(milliseconds, position.coords.latitude, position.coords.longitude)
 		
-			this.sunrise = times.sunrise.getTime()
-			this.sunset = times.sunset.getTime()
-			this.nextSunrise = this.sunrise + 86400000
-
-			this.dLength = this.sunset - this.sunrise
-			this.nLength = this.nextSunrise - this.sunset
-			this.rLength = this.nextSunrise - this.sunrise
-			
-			this.s = (this.sunset - this.sunrise) / this.rLength
-
-			this.setMilliseconds(milliseconds)
+		Time.getCurrentPosition((latitude, longitude)=> {
+			this.calculateTimes(milliseconds, latitude, longitude)
 		})
 
 
 		return this
+	}
+
+	static getCurrentPosition(success) {
+		if (localStorage.getItem("latitude")) {
+			success(localStorage.getItem("latitude"), localStorage.getItem("longitude"))
+		}
+
+		navigator.geolocation.getCurrentPosition((position)=> {
+			localStorage.setItem("latitude", position.coords.latitude)
+			localStorage.setItem("longitude", position.coords.longitude)
+
+			success(position.coords.latitude, position.coords.longitude)
+		})
+	}
+
+	calculateTimes(milliseconds, latitude, longitude) {
+		let times = SunCalc.getTimes(milliseconds, latitude, longitude)
+		
+		this.sunrise = times.sunrise.getTime()
+		this.sunset = times.sunset.getTime()
+		this.nextSunrise = this.sunrise + 86400000
+
+		this.dLength = this.sunset - this.sunrise
+		this.nLength = this.nextSunrise - this.sunset
+		this.rLength = this.nextSunrise - this.sunrise
+		
+		this.s = (this.sunset - this.sunrise) / this.rLength
+
+		this.setMilliseconds(milliseconds)
 	}
 
 	setMilliseconds(milliseconds) {
@@ -88,5 +105,9 @@ export class Time {
 
 	getY(time, center, radius, offset=0) {
 		return center + (radius * Math.sin((time + offset + 1 - this.s + ((this.s - 0.5) / 2)) * 2 * Math.PI))
+	}
+
+	getCurrentPosition() {
+
 	}
 }

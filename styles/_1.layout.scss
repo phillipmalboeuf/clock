@@ -31,10 +31,6 @@ header {
 	width: 100%;
 	z-index: 10;
 	padding: $gutter;
-
-	@media #{$phone} {
-		position: relative;
-	}
 }
 
 
@@ -44,14 +40,10 @@ header {
 	position: relative;
 	z-index: 1;
 	
-	padding: $vertical_rythm*5 $gutter*2 $gutter*2;
+	padding: $vertical_rythm*3 $gutter*2 $gutter*2;
 	max-width: $max_width;
 	margin: 0 auto;
 	min-height: 100vh;
-
-	@media #{$phone} {
-		min-height: auto;
-	}
 }
 
 

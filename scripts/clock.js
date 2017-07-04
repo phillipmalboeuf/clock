@@ -10,7 +10,7 @@ export class Clock extends React.Component {
 		super(props)
 
 		this.state = {
-			radius: props.radius ? props.radius : window.innerWidth/6,
+			radius: props.radius ? props.radius : window.innerHeight/4,
 			now: new Time()
 		}
 	}
@@ -158,6 +158,6 @@ export class Clock extends React.Component {
 			{/* Clock current time */}
 			<text x={center} y={center} className="clock__now" fontSize={font*2} fontWeight="bold" textAnchor={this.state.now.r > this.state.now.s/2 && this.state.now.r < this.state.now.s+(this.state.now.nLength/2) ? "end" : "start"}>{this.state.now.toString()}</text>
 		</svg>
-		: null
+		: <p>Fetching your location...</p>
 	}
 }

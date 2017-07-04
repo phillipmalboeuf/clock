@@ -20,6 +20,8 @@ html {
 }
 
 body {
+	font: #{$base_size}/#{$line_height} $body_font;
+	
 	color: $body_color;
 	background-color: $white--light;
 
@@ -46,8 +48,6 @@ h1, h2, h3, h4, h5, h6 {
 
 	color: $headings_color;
 	margin: 0 0 $vertical_rythm/2;
-
-	text-shadow: 0 0.05em 0 $black--dark;
 
 	&:last-child {
 		margin-bottom: 0;
