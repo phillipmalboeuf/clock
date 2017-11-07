@@ -42,6 +42,8 @@ export class Clock extends React.Component {
 		let stroke = radius*0.02
 		let font = radius*0.1
 
+		document.title = this.state.now.toString()
+
 		return this.state.now.r ? <svg width={diameter} height={diameter} className="clock">
 			{/* Text */}
 			<text x={diameter} y={0} fontSize={font/2} textAnchor="start">Now: R{(this.state.now.r*100).toFixed(1)}</text>
@@ -156,8 +158,8 @@ export class Clock extends React.Component {
 				L${this.state.now.getNowX(center, arrow, 0.1)} ${this.state.now.getNowY(center, arrow, 0.1)} Z`} className="clock__hand" strokeWidth={stroke} strokeLinejoin="miter" strokeMiterlimit={5} fill="black" />
 
 			{/* Clock current time */}
-			<text x={center} y={center} className="clock__now" fontSize={font*2} fontWeight="bold" textAnchor={this.state.now.r > this.state.now.s/2 && this.state.now.r < this.state.now.s+(this.state.now.nLength/2) ? "end" : "start"}>{this.state.now.toString()}</text>
+			<text x={center} y={center} className="clock__now" strokeWidth={stroke/2} fontSize={font*2} fontWeight="bold" textAnchor={this.state.now.r > this.state.now.s/2 && this.state.now.r < this.state.now.s+(this.state.now.nLength/2) ? "end" : "start"}>{this.state.now.toString()}</text>
 		</svg>
-		: <p>Fetching your location...</p>
+		: <p>Fetching your location...<br />We never record your information.</p>
 	}
 }

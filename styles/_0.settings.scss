@@ -12,10 +12,10 @@ $red: #cc6666;
 $blue: #81a2be;
 $green: #b5bd68;
 
-$dark: $black--dark;
-$dark--light: $black;
-$light: $white--light;
-$light--dark: $white;
+$dark: fade-out($black--dark, 0.5);
+$dark--light: fade-out($black, 0.5);
+$light: fade-out($white--light, 0.5);
+$light--dark: fade-out($white, 0.5);
 
 $body_color: $black;
 $headings_color: inherit;

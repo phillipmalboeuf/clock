@@ -49,6 +49,10 @@ export class Time {
 		this.r = (this.milliseconds - this.sunrise) / this.rLength
 		this.d = (this.milliseconds - this.sunrise) / this.dLength
 		this.n = (this.milliseconds - this.sunset) / this.nLength
+
+		if (this.r > 1) {
+			this.constructor(milliseconds)
+		}
 	}
 
 	toString(decimals=1) {

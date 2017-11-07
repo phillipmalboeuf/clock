@@ -22,8 +22,8 @@ html {
 body {
 	font: #{$base_size}/#{$line_height} $body_font;
 	
-	color: $body_color;
-	background-color: $white--light;
+	color: $highlight;
+	background-color: $black--light;
 
 	width: 100%;
 	overflow-x: hidden;
@@ -326,7 +326,7 @@ sub {
 
 // #BACKGROUNDS
 
-.light_back { background-color: $light_background; }
+.light_back { background-color: $light_background; color: $black; }
 .dark_back { background-color: $black--dark; }
 
 .image_back {

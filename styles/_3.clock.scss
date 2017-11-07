@@ -4,6 +4,10 @@
 
 .clock {
 	overflow: visible !important;
+
+	text {
+		fill: $highlight;
+	}
 }
 
 	.clock__hand {
@@ -14,8 +18,8 @@
 		stroke: $dark;
 	}
 
-	.clock__now {
-		fill: $dark;
+	text.clock__now {
+		fill: $white;
 	}
 
 	.clock__night {
